@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 public class HelloWorldController {
 
     @GetMapping("/hello")  //( urlPatterns)
-    @ResponseBody          // response.getWriter.println("hello world!")
+    // With a ResponseBody annotation it will return the value produced by this method as response
     public String hello() {
-        return "Hello world!";
+        return "hello"; // it'll look for the view within templates if no ResponseBody annotation is found
     }
 
     @GetMapping("/hello/{name}/{lastName}") // shortcut for RequestMapping (method = GET)
