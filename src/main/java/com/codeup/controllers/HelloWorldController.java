@@ -15,6 +15,27 @@ public class HelloWorldController {
         return "hello"; // it'll look for the view within templates if no ResponseBody annotation is found
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @GetMapping("/hello/{name}/{lastName}") // shortcut for RequestMapping (method = GET)
     @ResponseBody
     public String helloFriend(@PathVariable String name, @PathVariable String lastName) {
