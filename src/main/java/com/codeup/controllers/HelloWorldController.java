@@ -11,12 +11,12 @@ public class HelloWorldController {
 
     @GetMapping("/resume")
     public String showResume() {
-        return "";
+        return "resume";
     }
 
     @GetMapping("/portfolio")
     public String showPortfolio() {
-        return "";
+        return "portfolio";
     }
 
     @GetMapping("/hello")  //( urlPatterns)
