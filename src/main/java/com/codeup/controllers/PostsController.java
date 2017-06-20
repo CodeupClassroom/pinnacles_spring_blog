@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 
+// TODO: add posts svc
+
 @Controller
 public class PostsController {
 
