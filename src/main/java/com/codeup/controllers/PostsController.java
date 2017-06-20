@@ -11,10 +11,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+
 @Controller
 public class PostsController {
+
     @GetMapping("/posts")
-    public String viewAll() {
+    public String viewAll(Model model) {
+        ArrayList<Post> posts = new ArrayList<>();
+
+        posts.add(new Post("test post again", "here is a dummy body"));
+        posts.add(new Post("yet another post", "lorem ipsum, etc...."));
+
+        model.addAttribute("posts", posts);
+
         return "posts/index";
     }
 
