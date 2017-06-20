@@ -1,0 +1,25 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+</head>
+<body>
+    <h1>You guessed a <span th:text="${guess}"></span>!</h1>
+    <h1>The roll was a <span th:text="${roll}"></span>.</h1>
+
+    <h1 th:if="${userGuessedCorrectly}">You got it right!</h1>
+    <h1 th:if="${!userGuessedCorrectly}">You got it wrong!</h1>
+
+    <h1>Guess Again!</h1>
+
+    <a href="/roll-dice/1">1</a>
+    <a href="/roll-dice/2">2</a>
+    <a href="/roll-dice/3">3</a>
+    <a href="/roll-dice/4">4</a>
+    <a href="/roll-dice/5">5</a>
+    <a href="/roll-dice/6">6</a>
+
+</body>
+</html>

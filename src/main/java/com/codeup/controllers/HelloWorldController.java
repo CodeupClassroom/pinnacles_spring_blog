@@ -9,6 +9,16 @@ import org.springframework.web.bind.annotation.*;
 @Controller  // @WebServlet
 public class HelloWorldController {
 
+    @GetMapping("/resume")
+    public String showResume() {
+        return "resume";
+    }
+
+    @GetMapping("/portfolio")
+    public String showPortfolio() {
+        return "portfolio";
+    }
+
     @GetMapping("/hello")  //( urlPatterns)
     // With a ResponseBody annotation it will return the value produced by this method as response
     public String hello() {
