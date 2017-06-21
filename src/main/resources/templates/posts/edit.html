@@ -5,7 +5,7 @@
 <nav th:replace="fragments :: my-navbar"/>
 <div class="container">
     <form
-        action="/posts/create"
+        th:action="${'/posts/' + post.id + '/edit'}"
         method="post"
         th:object="${post}"
         th:include="fragments :: form"
