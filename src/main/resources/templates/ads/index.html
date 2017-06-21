@@ -8,9 +8,11 @@
 <body>
 <h1>Posts Index Page</h1>
 <h2>Listing of all the posts</h2>
-<div th:each="post : ${posts}">
-    <h2>Title: <span th:text="${post.title}"></span></h2>
-    <h2>Body: <span th:text="${post.body}"></span></h2>
+
+<div th:each="ad : ${ads}">
+    <h2>id: <span th:text="${ad.author_id}"></span></h2>
+    <h2>Title: <span th:text="${ad.title}"></span></h2>
+    <h2>Body: <span th:text="${ad.description}"></span></h2>
 </div>
 
 </body>

@@ -6,16 +6,7 @@
 </head>
 <body>
 <nav th:replace="fragments :: my-navbar"></nav>
-<form action="/ads/create" method="post" th:object="${ad}">
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" class="form-control" th:field="*{title}" />
-    </div>
-    <div class="form-group">
-        <label for="description">Description</label>
-        <input type="text" name="description" id="description" class="form-control" th:field="*{description}" />
-    </div>
-    <button class="btn btn-default">Save</button>
+<form th:include="fragments :: adForm" action="/ads/create" method="post" th:object="${ad}">
 </form>
 </body>
 </html>
