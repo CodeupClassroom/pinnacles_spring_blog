@@ -44,10 +44,10 @@ public class PostsController {
         return "posts/show";
     }
 
-    @GetMapping("/posts/create")
-    @ResponseBody
-    public String showPostForm() {
-        return "view the form for creating a post";
+    @GetMapping("/posts/create")  // what we type in the browser
+    public String showPostForm(Model model) {
+        model.addAttribute("post", new Post());
+        return "posts/create"; // this is the location of the template in the templates directory
     }
 
     @PostMapping("/posts/create")

@@ -4,14 +4,14 @@
 <body>
 <nav th:replace="fragments :: my-navbar"/>
 <div class="container">
-    <form action="/posts/create" method="post">
+    <form action="/posts/create" method="post" th:object="${post}">
         <div class="form-group">
             <label for="title">Title</label>
-            <input id="title" type="text">
+            <input id="title" type="text" th:field="*{title}"/>
         </div>
         <div class="form-group">
             <label for="body">Body</label>
-            <input id="body" type="text">
+            <input id="body" type="text" th:field="*{body}"/>
         </div>
         <button class="btn btn-default">Save</button>
     </form>
