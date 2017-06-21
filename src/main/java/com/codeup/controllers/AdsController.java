@@ -29,4 +29,12 @@ public class AdsController {
     public String show(@PathVariable long id) {
         return "viewing ad #" + id;
     }
+
+    public String showAdForm() {
+        return null;
+    }
+
+    public String saveAd() {
+        return null;
+    }
 }
