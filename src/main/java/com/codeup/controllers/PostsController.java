@@ -8,10 +8,7 @@ import com.codeup.svcs.PostSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,15 +41,30 @@ public class PostsController {
         return "posts/show";
     }
 
-    @GetMapping("/posts/create")
-    @ResponseBody
-    public String showPostForm() {
-        return "view the form for creating a post";
+    @GetMapping("/posts/create")  // what we type in the browser
+    public String showPostForm(Model model) {
+        model.addAttribute("post", new Post());
+        return "posts/create"; // this is the location of the template in the templates directory
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String savePost() {
-        return "create a new post";
+    public String savePost(
+        @RequestParam(name = "title") String title,
+        @RequestParam(name = "body") String body,
+        Model model
+    ) {
+        Post post = new Post(title, body);
+        postSvc.save(post);
+        model.addAttribute("post", post);
+        return "posts/create";
+    }
+
+    @GetMapping("/posts/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model model) {
+        // TODO: Find this post in the data source using the service
+        Post post = postSvc.findOne(id);
+        // TODO: Pass the post found to the view
+        model.addAttribute("post", post);
+        return "posts/edit";
     }
 }
