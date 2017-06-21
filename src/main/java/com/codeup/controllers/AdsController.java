@@ -4,9 +4,7 @@ import com.codeup.models.Ad;
 import com.codeup.svcs.AdSvc;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,11 +31,19 @@ public class AdsController {
     }
 
     @GetMapping("/ads/create")
-    public String showAdForm() {
+    public String showAdForm(Model model) {
+        model.addAttribute("ad", new Ad()); // We only need empty models on get requests
         return "ads/create";
     }
 
-    public String saveAd() {
-        return null;
+    @PostMapping("/ads/create")
+    public String saveAd(
+        @RequestParam(name = "title") String title, // String title = request.getParameter("title")
+        @RequestParam(name = "description") String description,
+        Model model  // Model model = new Model();
+    ) {
+        Ad ad = new Ad(title, description);
+        model.addAttribute("ad", ad);
+        return "ads/create";
     }
 }
