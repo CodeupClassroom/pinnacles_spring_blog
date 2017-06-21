@@ -60,9 +60,11 @@ public class PostsController {
     }
 
     @GetMapping("/posts/{id}/edit")
-    public String showEditForm(@PathVariable long id) {
+    public String showEditForm(@PathVariable long id, Model model) {
         // TODO: Find this post in the data source using the service
+        Post post = postSvc.findOne(id);
         // TODO: Pass the post found to the view
+        model.addAttribute("post", post);
         return "posts/edit";
     }
 }
