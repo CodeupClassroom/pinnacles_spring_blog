@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head('Post a new Ad')">
+    <meta charset="UTF-8" />
     <title>Post a new Ad</title>
 </head>
 <body>
-
+<nav th:replace="fragments :: my-navbar"></nav>
+<form action="/ads/create" method="post">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description" class="form-control" />
+    </div>
+    <button class="btn btn-default">Save</button>
+</form>
 </body>
 </html>
