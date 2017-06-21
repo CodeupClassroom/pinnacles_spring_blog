@@ -6,13 +6,9 @@
     <title></title>
 </head>
 <body>
-<h1>Posts Index Page</h1>
-<h2>Listing of all the posts</h2>
-ac
-<div th:each="post : ${posts}">
-    <h2>Title: <span th:text="${post.title}"></span></h2>
-    <h2>Body: <span th:text="${post.body}"></span></h2>
-</div>
-
+    <h1>Ads Show Page</h1>
+    <h2>This is the view for an individual ad.</h2>
+    <h2>Title: <span th:text="${ad.title}"></span></h2>
+    <h2>Description: <span th:text="${ad.description}"></span></h2>
 </body>
 </html>

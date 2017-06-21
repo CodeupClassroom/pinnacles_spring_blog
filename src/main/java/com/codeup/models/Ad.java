@@ -1,9 +1,25 @@
 package com.codeup.models;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "ads")
 public class Ad {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false, length = 100)
     private String title;
+
+    @Column(nullable = false, columnDefinition = "Text")
     private String description;
+
+    @Column(nullable = false)
+    private long author_id;
+
 
     public Ad(String title, String description) {
         this.title = title;
@@ -36,5 +52,13 @@ public class Ad {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public long getAuthor_id() {
+        return author_id;
+    }
+
+    public void setAuthor_id(long author_id) {
+        this.author_id = author_id;
     }
 }

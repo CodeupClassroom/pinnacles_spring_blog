@@ -1,7 +1,8 @@
 package com.codeup.controllers;
 
 import com.codeup.models.Ad;
-import com.codeup.svcs.AdSvc;
+import com.codeup.repositories.AdsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,24 +11,35 @@ import java.util.List;
 
 @Controller
 public class AdsController {
-    private AdSvc adsDao;
+    private AdsRepository adsDao;
 
-    public AdsController(AdSvc adsDao) {
+    @Autowired
+    public AdsController(AdsRepository adsDao) {
         this.adsDao = adsDao;
     }
 
     @GetMapping("/ads")
     public String index(Model model) {
-        List<Ad> ads = adsDao.findAll();
+
+        Iterable<Ad> ads = adsDao.findAll();
+
+        // Just a small test to find an Ad by it's title.
+        Ad ad = adsDao.findByTitle("test");
+        System.out.println(ad.getDescription());
+
+        // In order to searc by title we can retrieve a list of ads that matches the title provided by the users input.
+//        List<Ad> ads = adsDao.findByTitleIsLike("%test%");
+
         model.addAttribute("ads", ads);
-        // TODO: create this view / html file
+
         return "ads/index";
     }
 
     @GetMapping("/ads/{id}")
-    @ResponseBody
-    public String show(@PathVariable long id) {
-        return "viewing ad #" + id;
+    public String show(@PathVariable long id, Model model) {
+        Ad ad = adsDao.findOne(id);
+        model.addAttribute("ad", ad);
+        return  "ads/show";
     }
 
     @GetMapping("/ads/create")
