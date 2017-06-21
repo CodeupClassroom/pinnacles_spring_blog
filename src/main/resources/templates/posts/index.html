@@ -8,7 +8,6 @@
 <body>
 <h1>Posts Index Page</h1>
 <h2>Listing of all the posts</h2>
-ac
 <div th:each="post : ${posts}">
     <h2>Title: <span th:text="${post.title}"></span></h2>
     <h2>Body: <span th:text="${post.body}"></span></h2>
