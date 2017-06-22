@@ -3,3 +3,5 @@ spring.datasource.username=db_user
 spring.datasource.password=db_pass
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 spring.jpa.hibernate.ddl-auto=update
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+spring.jpa.show-sql=true
