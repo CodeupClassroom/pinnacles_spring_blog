@@ -65,4 +65,17 @@ public class PostsController {
         model.addAttribute("post", post);
         return "posts/edit";
     }
+
+    @PostMapping("/posts/{id}/edit")
+    public String editPost(@ModelAttribute Post post){
+        postSvc.save(post);
+        return "redirect:/posts/" + post.getId();
+    }
+
+    @PostMapping("/post/delete")
+    public String deletePost(@ModelAttribute Post post, Model model){
+        postSvc.deletePost(post.getId());
+        model.addAttribute("msg", "Your post was deleted correctly");
+        return "return the view with a success message";
+    }
 }

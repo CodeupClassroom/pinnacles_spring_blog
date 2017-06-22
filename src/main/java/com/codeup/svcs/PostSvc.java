@@ -38,4 +38,8 @@ public class PostSvc {
         postsDao.save(post); // insert into posts(title, body) values (?, ?)
         return post;
     }
+
+    public void deletePost(long id){
+        postsDao.delete(id);
+    }
 }
