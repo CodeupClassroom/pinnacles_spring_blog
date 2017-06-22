@@ -17,8 +17,8 @@ public class Ad {
     @Column(nullable = false, columnDefinition = "Text")
     private String description;
 
-    @Column(nullable = false)
-    private long author_id;
+    @OneToOne
+    private User owner;
 
 
     public Ad(String title, String description) {
@@ -54,11 +54,4 @@ public class Ad {
         this.description = description;
     }
 
-    public long getAuthor_id() {
-        return author_id;
-    }
-
-    public void setAuthor_id(long author_id) {
-        this.author_id = author_id;
-    }
 }
