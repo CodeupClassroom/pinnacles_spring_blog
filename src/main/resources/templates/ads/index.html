@@ -10,9 +10,10 @@
 <h2>Listing of all the posts</h2>
 
 <div th:each="ad : ${ads}">
-    <h2>id: <span th:text="${ad.author_id}"></span></h2>
     <h2>Title: <span th:text="${ad.title}"></span></h2>
     <h2>Body: <span th:text="${ad.description}"></span></h2>
+    <h5>User: <span th:text="${ad.owner.username}"></span></h5>
+    <h5>Email: <span th:text="${ad.owner.email}"></span></h5>
 </div>
 
 </body>
