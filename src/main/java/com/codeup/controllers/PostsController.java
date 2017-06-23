@@ -53,7 +53,7 @@ public class PostsController {
         @RequestParam(name = "body") String body,
         Model model
     ) {
-        User user = usersDao.findOne(1L); // hard-coded -> logged in user
+        User user = usersDao.findByUsername("admin"); // hard-coded -> logged in user
         Post post = new Post(title, body, user);
         postSvc.save(post);
         model.addAttribute("post", post);
