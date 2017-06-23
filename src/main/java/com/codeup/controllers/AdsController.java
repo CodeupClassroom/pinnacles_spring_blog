@@ -24,13 +24,14 @@ public class AdsController {
         Iterable<Ad> ads = adsDao.findAll();
 
         // Just a small test to find an Ad by it's title.
-        Ad ad = adsDao.findByTitle("test");
-        System.out.println(ad.getDescription());
+//        Ad ad = adsDao.findByTitle("test");
+//        System.out.println(ad.getDescription());
 
         // In order to searc by title we can retrieve a list of ads that matches the title provided by the users input.
 //        List<Ad> ads = adsDao.findByTitleIsLike("%test%");
 
         model.addAttribute("ads", ads);
+
 
         return "ads/index";
     }

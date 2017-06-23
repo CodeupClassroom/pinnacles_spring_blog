@@ -1,6 +1,7 @@
 package com.codeup.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -17,8 +18,11 @@ public class Ad {
     @Column(nullable = false, columnDefinition = "Text")
     private String description;
 
-    @Column(nullable = false)
-    private long author_id;
+    @OneToOne
+    private User owner;
+
+    @OneToMany( cascade = CascadeType.ALL, mappedBy = "ad")
+    private List<AdImage> images;
 
 
     public Ad(String title, String description) {
@@ -54,11 +58,19 @@ public class Ad {
         this.description = description;
     }
 
-    public long getAuthor_id() {
-        return author_id;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setAuthor_id(long author_id) {
-        this.author_id = author_id;
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public List<AdImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<AdImage> images) {
+        this.images = images;
     }
 }
