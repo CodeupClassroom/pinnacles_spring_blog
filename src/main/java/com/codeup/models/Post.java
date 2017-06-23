@@ -23,9 +23,10 @@ public class Post {
     @OneToOne
     private User owner;
 
-    public Post(String title, String body) {
+    public Post(String title, String body, User owner) {
         this.title = title;
         this.body = body;
+        this.owner = owner;
     }
 
     public Post() {

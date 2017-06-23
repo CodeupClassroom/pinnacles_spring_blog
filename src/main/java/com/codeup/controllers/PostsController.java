@@ -53,9 +53,8 @@ public class PostsController {
         @RequestParam(name = "body") String body,
         Model model
     ) {
-        Post post = new Post(title, body);
         User user = usersDao.findOne(1L); // hard-coded -> logged in user
-        post.setOwner(user);
+        Post post = new Post(title, body, user);
         postSvc.save(post);
         model.addAttribute("post", post);
         return "posts/create";
