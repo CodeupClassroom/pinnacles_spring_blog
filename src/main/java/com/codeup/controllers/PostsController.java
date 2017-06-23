@@ -4,6 +4,8 @@
 package com.codeup.controllers;
 
 import com.codeup.models.Post;
+import com.codeup.models.User;
+import com.codeup.repositories.UsersRepository;
 import com.codeup.svcs.PostSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,16 +14,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// TODO: add posts svc
-
 @Controller
 public class PostsController {
 
     private final PostSvc postSvc;
+    private final UsersRepository usersDao;
 
     @Autowired
-    public PostsController(PostSvc postSvc) {
+    public PostsController(PostSvc postSvc, UsersRepository usersDao) {
         this.postSvc = postSvc;
+        this.usersDao = usersDao;
     }
 
     @GetMapping("/posts")
@@ -52,6 +54,8 @@ public class PostsController {
         Model model
     ) {
         Post post = new Post(title, body);
+        User user = usersDao.findOne(1L); // hard-coded -> logged in user
+        post.setOwner(user);
         postSvc.save(post);
         model.addAttribute("post", post);
         return "posts/create";
