@@ -1,18 +1,18 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
-</head>
+<head th:replace="fragments :: head('hello world!')" />
 <body>
-<h1>Posts Index Page</h1>
-<h2>Listing of all the posts</h2>
-<div th:each="post : ${posts}">
-    <h2>Title: <span th:text="${post.title}"></span></h2>
-    <h2>Body: <span th:text="${post.body}"></span></h2>
-    <h2>user's email: <span th:text="${post.owner.email}"></span></h2>
-</div>
+    <nav th:replace="fragments :: my-navbar" />
+
+    <div class="container">
+        <h1>Posts Index Page</h1>
+        <h2>Listing of all the posts</h2>
+        <div th:each="post : ${posts}">
+            <h2>Title: <span th:text="${post.title}"></span></h2>
+            <h2>Body: <span th:text="${post.body}"></span></h2>
+            <h2>user's email: <span th:text="${post.owner.email}"></span></h2>
+        </div>
+    </div>
 
 </body>
 </html>

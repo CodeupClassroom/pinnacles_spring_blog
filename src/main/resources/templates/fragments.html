@@ -21,6 +21,16 @@
                 <li>
                     <a href="/posts">View the Posts</a>
                 </li>
+                <li><a href="/posts/create">Create post</a></li>
+
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+
+                <li>
+                    <form th:action="@{/logout}" th:method="post">
+                        <button class="btn-danger btn">Logout</button>
+                    </form>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
 
