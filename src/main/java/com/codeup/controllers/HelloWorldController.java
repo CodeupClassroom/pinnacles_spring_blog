@@ -19,10 +19,10 @@ public class HelloWorldController {
         return "portfolio";
     }
 
-    @GetMapping("/hello")  //( urlPatterns)
+    @GetMapping("/")  //( urlPatterns)
     // With a ResponseBody annotation it will return the value produced by this method as response
     public String hello() {
-        return "hello"; // it'll look for the view within templates if no ResponseBody annotation is found
+        return "index"; // it'll look for the view within templates if no ResponseBody annotation is found
     }
 
 

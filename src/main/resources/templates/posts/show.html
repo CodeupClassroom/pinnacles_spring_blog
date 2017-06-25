@@ -1,15 +1,15 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
-</head>
+<head th:replace="fragments :: head('hello world!')" />
 <body>
-    <h1>Posts Show Page</h1>
-    <h2>This is the view for an individual post.</h2>
-    <h2>Title: <span th:text="${post.title}"></span></h2>
-    <h2>Body: <span th:text="${post.body}"></span></h2>
-    <h2>Email: <span th:text="${post.owner.email}"></span></h2>
+
+    <nav th:replace="fragments :: my-navbar" />
+    <div class="container">
+        <h1>Posts Show Page</h1>
+        <h2>This is the view for an individual post.</h2>
+        <h2>Title: <span th:text="${post.title}"></span></h2>
+        <h2>Body: <span th:text="${post.body}"></span></h2>
+        <h2>Email: <span th:text="${post.owner.email}"></span></h2>
+    </div>
 </body>
 </html>
