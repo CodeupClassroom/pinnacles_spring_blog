@@ -1,14 +1,13 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
-</head>
+<head th:include="fragments :: head(${ad.title})" />
 <body>
-    <h1>Ads Show Page</h1>
-    <h2>This is the view for an individual ad.</h2>
-    <h2>Title: <span th:text="${ad.title}"></span></h2>
-    <h2>Description: <span th:text="${ad.description}"></span></h2>
+    <nav th:replace="fragments :: my-navbar"></nav>
+    <div class="container">
+        <h1>Ads Show Page</h1>
+        <h2>This is the view for an individual ad.</h2>
+        <h2>Title: <span th:text="${ad.title}"></span></h2>
+        <h2>Description: <span th:text="${ad.description}"></span></h2>
+    </div>
 </body>
 </html>
