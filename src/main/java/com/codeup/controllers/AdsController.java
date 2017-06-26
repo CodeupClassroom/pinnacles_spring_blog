@@ -1,13 +1,13 @@
 package com.codeup.controllers;
 
 import com.codeup.models.Ad;
+import com.codeup.models.User;
 import com.codeup.repositories.AdsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 public class AdsController {
@@ -51,12 +51,13 @@ public class AdsController {
 
     @PostMapping("/ads/create")
     public String saveAd(
-        @RequestParam(name = "title") String title, // String title = request.getParameter("title")
-        @RequestParam(name = "description") String description,
+        @ModelAttribute Ad ad,
         Model model  // Model model = new Model();
     ) {
-        Ad ad = new Ad(title, description);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ad.setAuthor(user);
+        adsDao.save(ad);
         model.addAttribute("ad", ad);
-        return "ads/create";
+        return "redirect:/ads";
     }
 }

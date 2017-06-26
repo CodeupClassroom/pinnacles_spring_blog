@@ -6,7 +6,7 @@
 </head>
 <body>
 <nav th:replace="fragments :: my-navbar"></nav>
-<form th:include="fragments :: adForm" action="/ads/create" method="post" th:object="${ad}">
+<form th:include="fragments :: adForm" th:action="@{/ads/create}" th:method="post" th:object="${ad}">
 </form>
 </body>
 </html>
