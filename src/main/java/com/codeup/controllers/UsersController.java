@@ -28,6 +28,8 @@ public class UsersController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         usersDao.save(user);
 
+        //Create a default user role for the new user
+
         return null;
 
     }

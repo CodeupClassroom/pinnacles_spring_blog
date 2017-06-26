@@ -1,17 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="fragments :: head('Blog index')" />
 <body>
 
-<nav th:replace="fragments :: my-navbar" />
+    <nav th:replace="fragments :: my-navbar" />
 
-<div class="container">
+    <div class="container">
 
-    <h1>Hello Pinnacles</h1>
+        <h1>Hello Pinnacles</h1>
 
-</div>
+        <div sec:authorize="isAuthenticated()">
+            This content is only shown to authenticated users.
+            <br/>
+            Logged user: <span sec:authentication="name">Bob</span>
+            <br/>
+            Roles: <span sec:authentication="principal.authorities">[ROLES]</span>
+        </div>
 
-<div th:replace="fragments :: scripts"></div>
+        <div sec:authorize="hasRole('ADMIN')">
+            <button class="btn btn-danger">Delete everything</button>
+            <br/>
+        </div>
+
+        <div sec:authorize="hasRole('USER')">
+            <button class="btn">Special User btn</button>
+            <br/>
+        </div>
+
+        <div sec:authorize="hasRole('MGMT')">
+            <button class="btn btn-warning">Manage everything</button>
+            <br/>
+        </div>
+
+    </div>
+
+    <div th:replace="fragments :: scripts"></div>
 
 </body>
 </html>
