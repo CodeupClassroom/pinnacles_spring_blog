@@ -58,6 +58,15 @@ public class AdsController {
         Errors validation,
         Model model  // Model model = new Model();
     ) {
+        // if (!passwordConfirm.equals(password)) { /* reject value */ }
+        if (ad.getTitle().endsWith("?")) {
+            validation.rejectValue(
+                "title",
+                "ad.title",
+                "You can't be unsure about your title!"
+            );
+        }
+
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
             model.addAttribute("ad", ad);
