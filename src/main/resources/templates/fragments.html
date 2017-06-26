@@ -28,7 +28,7 @@
 
                 <li>
                     <form th:action="@{/logout}" th:method="post">
-                        <button class="btn-danger btn">Logout</button>
+                        <button class="btn-link btn" style="margin-top: 8px">Logout</button>
                     </form>
                 </li>
             </ul>
@@ -52,15 +52,15 @@
 <form th:fragment="adForm">
     <div class="form-group">
         <label for="title">Title</label>
-        <input id="title" type="text" th:field="*{title}"/>
+        <input id="title" class="form-control" th:field="*{title}"/>
         <div class="alert alert-warning alert-dismissible" role="alert" th:if="${#fields.hasErrors('title')}">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <span th:errors="*{title}" />
         </div>
     </div>
     <div class="form-group">
-        <label for="description">description</label>
-        <input id="description" type="text" th:field="*{description}"/>
+        <label for="description">Description</label>
+        <input id="description" class="form-control" th:field="*{description}"/>
         <div class="alert alert-warning alert-dismissible" role="alert" th:if="${#fields.hasErrors('description')}">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <span th:errors="*{description}" />

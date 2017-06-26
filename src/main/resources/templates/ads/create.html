@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments :: head('Post a new Ad')">
-    <meta charset="UTF-8" />
-    <title>Post a new Ad</title>
-</head>
+<head th:include="fragments :: head('Create a new Ad')" />
 <body>
 <nav th:replace="fragments :: my-navbar"></nav>
-<form th:include="fragments :: adForm" th:action="@{/ads/create}" th:method="post" th:object="${ad}">
-</form>
+<div class="container">
+    <form
+        th:include="fragments :: adForm"
+        th:action="@{/ads/create}"
+        th:method="post"
+        th:object="${ad}"
+    />
+</div>
 </body>
 </html>
