@@ -28,7 +28,7 @@ public class UsersController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         usersDao.save(user);
 
-        return "redirect:/posts";
+        return null;
 
     }
 
