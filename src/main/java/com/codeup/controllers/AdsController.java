@@ -1,13 +1,16 @@
 package com.codeup.controllers;
 
 import com.codeup.models.Ad;
+import com.codeup.models.User;
 import com.codeup.repositories.AdsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @Controller
 public class AdsController {
@@ -51,12 +54,29 @@ public class AdsController {
 
     @PostMapping("/ads/create")
     public String saveAd(
-        @RequestParam(name = "title") String title, // String title = request.getParameter("title")
-        @RequestParam(name = "description") String description,
+        @Valid Ad ad,
+        Errors validation,
         Model model  // Model model = new Model();
     ) {
-        Ad ad = new Ad(title, description);
+        // if (!passwordConfirm.equals(password)) { /* reject value */ }
+        if (ad.getTitle().endsWith("?")) {
+            validation.rejectValue(
+                "title",
+                "ad.title",
+                "You can't be unsure about your title!"
+            );
+        }
+
+        if (validation.hasErrors()) {
+            model.addAttribute("errors", validation);
+            model.addAttribute("ad", ad);
+            return "ads/create";
+        }
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ad.setAuthor(user);
+        adsDao.save(ad);
         model.addAttribute("ad", ad);
-        return "ads/create";
+        return "redirect:/ads";
     }
 }
