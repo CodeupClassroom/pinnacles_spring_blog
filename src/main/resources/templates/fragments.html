@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head th:fragment="head(title)">
     <meta charset="UTF-8" />
@@ -18,19 +19,18 @@
 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="/posts">View the Posts</a>
-                </li>
-                <li><a href="/posts/create">Create post</a></li>
 
-                <li><a href="/register">Register</a></li>
-                <li><a href="/login">Login</a></li>
-
-                <li>
+                <li sec:authorize="isAuthenticated()"><a href="#" class="btn-link btn">Welcome, <span sec:authentication="name">Bob</span></a></li>
+                <li><a href="/posts">View the Posts</a></li>
+                <li sec:authorize="isAuthenticated()"><a href="/posts/create">Create post</a></li>
+                <li sec:authorize="isAuthenticated()">
                     <form th:action="@{/logout}" th:method="post">
                         <button class="btn-link btn" style="margin-top: 8px">Logout</button>
                     </form>
                 </li>
+
+                <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
+                <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
 
