@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head('View all the Ads')" />
+<body>
+<nav th:replace="fragments :: my-navbar"></nav>
+<div class="container">
+    <div id="posts"></div>
+</div>
+<script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"
+></script>
+<script src="/js/posts.js"></script>
+</body>
+</html>

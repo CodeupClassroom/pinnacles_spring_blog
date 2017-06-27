@@ -21,6 +21,16 @@ public class AdsController {
         this.adsDao = adsDao;
     }
 
+    @GetMapping("/ads.json")
+    public @ResponseBody Iterable<Ad> viewAllAds() {
+        return adsDao.findAll();
+    }
+
+    @GetMapping("/ads/ajax")
+    public String viewAllAdsUsingAnAjaxCall() {
+        return "ads/ajax";
+    }
+
     @GetMapping("/ads")
     public String index(Model model) {
 
