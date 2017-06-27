@@ -13,6 +13,10 @@
                 <img th:src="${image.path}" width="100px" height="100px" />
             </div>
 
+            <div th:if="${ad.imageUrl}">
+                <img th:src="${'/uploads/' + ad.imageUrl}" alt="" width="100" height="100" />
+            </div>
+
             <h2>Title: <span th:text="${ad.title}"></span></h2>
             <h2>Body: <span th:text="${ad.description}"></span></h2>
             <h5>User: <span th:text="${ad.author.username}"></span></h5>

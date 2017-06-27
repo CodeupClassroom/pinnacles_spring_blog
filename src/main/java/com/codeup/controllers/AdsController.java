@@ -107,6 +107,7 @@ public class AdsController {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ad.setAuthor(user);
+        ad.setImageUrl(filename);
         adsDao.save(ad);
         model.addAttribute("ad", ad);
         return "redirect:/ads";

@@ -83,4 +83,12 @@ public class Ad {
     public void setImages(List<AdImage> images) {
         this.images = images;
     }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }
