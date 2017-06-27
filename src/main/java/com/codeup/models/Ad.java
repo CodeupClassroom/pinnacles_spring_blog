@@ -31,6 +31,9 @@ public class Ad {
     @OneToMany( cascade = CascadeType.ALL, mappedBy = "ad")
     private List<AdImage> images;
 
+    @Column(nullable = true)
+    private String imageUrl;
+
 
     public Ad(String title, String description) {
         this.title = title;
