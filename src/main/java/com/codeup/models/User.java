@@ -1,6 +1,10 @@
 package com.codeup.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by fer on 6/22/17.
@@ -20,7 +24,12 @@ public class User {
     private String email;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    @JsonBackReference
+    private List<Ad> ads;
 
     public User(){
 

@@ -1,5 +1,6 @@
 package com.codeup.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Ad {
     private String description;
 
     @ManyToOne
+    @JsonManagedReference
     private User author;
 
     @OneToMany( cascade = CascadeType.ALL, mappedBy = "ad")
