@@ -27,7 +27,7 @@ public class User {
     @JsonIgnore
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "author")
     @JsonBackReference
     private List<Ad> ads;
 
