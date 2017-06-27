@@ -21,6 +21,11 @@ public class AdsController {
         this.adsDao = adsDao;
     }
 
+    @GetMapping("/ads.json")
+    public @ResponseBody Iterable<Ad> viewAllAds() {
+        return adsDao.findAll();
+    }
+
     @GetMapping("/ads")
     public String index(Model model) {
 
