@@ -31,6 +31,9 @@ public class Ad {
     @OneToMany( cascade = CascadeType.ALL, mappedBy = "ad")
     private List<AdImage> images;
 
+    @Column(nullable = true)
+    private String imageUrl;
+
 
     public Ad(String title, String description) {
         this.title = title;
@@ -79,5 +82,13 @@ public class Ad {
 
     public void setImages(List<AdImage> images) {
         this.images = images;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

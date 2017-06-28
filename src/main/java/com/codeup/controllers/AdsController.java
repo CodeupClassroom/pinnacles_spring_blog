@@ -4,17 +4,26 @@ import com.codeup.models.Ad;
 import com.codeup.models.User;
 import com.codeup.repositories.AdsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 @Controller
 public class AdsController {
+
     private AdsRepository adsDao;
+
+    @Value("${file-upload-path}")
+    private String uploadPath;
 
     @Autowired
     public AdsController(AdsRepository adsDao) {
@@ -66,6 +75,7 @@ public class AdsController {
     public String saveAd(
         @Valid Ad ad,
         Errors validation,
+        @RequestParam(name = "file") MultipartFile uploadedFile,
         Model model  // Model model = new Model();
     ) {
         // if (!passwordConfirm.equals(password)) { /* reject value */ }
@@ -83,8 +93,21 @@ public class AdsController {
             return "ads/create";
         }
 
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+
+        try {
+            uploadedFile.transferTo(destinationFile);
+//            model.addAttribute("message", "File successfully uploaded!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            model.addAttribute("message", "Oops! Something went wrong! " + e);
+        }
+
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ad.setAuthor(user);
+        ad.setImageUrl(filename);
         adsDao.save(ad);
         model.addAttribute("ad", ad);
         return "redirect:/ads";
